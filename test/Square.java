@@ -3,7 +3,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.Rectangle2D;
-
 import java.awt.Toolkit;
 
 
@@ -11,12 +10,12 @@ public class Square {
 
 	private Color color;
 	private int x, y;
-	public static final int SQUARE_SIZE = 100;
+	public static int SQUARE_SIZE = 10;
 	private boolean selected = false;
 	public String iconPath;
 	
 	public void setHL(){
-		color = Color.orange;
+		color = new Color(248, 242, 114);
 		selected = true;
 	}
 	
@@ -26,6 +25,13 @@ public class Square {
 		this.x = x;
 		this.y = y;
 		setColor();
+	}
+	
+	protected void setX(int x){ this.x = x; }
+	protected void setY(int y){ this.y = y; }
+	
+	public void setSize(int s){
+		SQUARE_SIZE = s;
 	}
 	
 	protected void setColor(){
@@ -39,6 +45,7 @@ public class Square {
 	public int getX(){ return x; }
 	public int getY(){ return y; }
 
+	
 	public void draw(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		Rectangle2D r = new Rectangle2D.Double(x, y, SQUARE_SIZE, SQUARE_SIZE);
@@ -48,7 +55,13 @@ public class Square {
 		if(iconPath != null){
 			Image i = Toolkit.getDefaultToolkit().getImage(iconPath);
 			
-			g.drawImage(i, x+SQUARE_SIZE/2 - i.getWidth(null)/2, y+SQUARE_SIZE/2 - i.getHeight(null)/2, null);
+			g.drawImage(i, x+SQUARE_SIZE/2 - i.getWidth(null)/2,
+					y+SQUARE_SIZE/2 - i.getHeight(null)/2, null);
+			
+			
+//			g.drawImage(i, x+SQUARE_SIZE/2 - i.getWidth(null)/2,
+//					y+SQUARE_SIZE/2 - i.getHeight(null)/2, null);
+		
 		}
 	}
 }

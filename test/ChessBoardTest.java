@@ -1,10 +1,11 @@
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import javax.swing.JPanel;
 
 
@@ -14,12 +15,13 @@ public class ChessBoardTest extends JPanel implements MouseListener{
 	private static final long serialVersionUID = 7613925947436064730L;
 	
 	public ChessBoardTest(){
-		super(new GridLayout(0,10));
+		super(new GridLayout(10, 10));
 		for(int i=0; i<8; i++)
 			for(int j=0; j<8; j++)
 				squares[i][j] = new Square(i*Square.SQUARE_SIZE, j*Square.SQUARE_SIZE);
-		int prefSize = 8 * Square.SQUARE_SIZE;
-		setPreferredSize(new Dimension(prefSize, prefSize));
+		//int prefSize = 8 * Square.SQUARE_SIZE;
+		setPreferredSize(getPreferredSize());
+		
 		addMouseListener(this);
 	}
 
@@ -29,8 +31,12 @@ public class ChessBoardTest extends JPanel implements MouseListener{
 	}
 	
 	private void draw(Graphics g){
-		for(Square ss[] : squares){
-			for(Square s : ss){
+		Square s;
+		for(int i=0; i<8; i++){
+			for(int j=0; j<8; j++){
+				s = squares[i][j];
+				s.setX(i*Square.SQUARE_SIZE);
+				s.setY(j*Square.SQUARE_SIZE);
 				s.draw(g);
 			}
 		}
@@ -88,8 +94,21 @@ public class ChessBoardTest extends JPanel implements MouseListener{
 		int h = (int)prefSize.getHeight();
 		
 		int s = (w>h? h:w);
+		Square.SQUARE_SIZE = s/8;
+		System.out.println(s);
 		return new Dimension(s, s);
 			
+	}
+
+	public JPanel getConstraintPanel() {
+		JPanel containsChessBoard = new JPanel(new GridBagLayout());
+		//containsChessBoard.setBorder(new CompoundBorder(new EmptyBorder(10,10,10,10),
+			//	new LineBorder(Color.BLACK)));
+		containsChessBoard.setOpaque(false);
+		containsChessBoard.add(this);
+		containsChessBoard.setSize(containsChessBoard.getPreferredSize());
+		
+		return containsChessBoard;
 	}
 
 }
