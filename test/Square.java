@@ -55,13 +55,9 @@ public class Square {
 		if(iconPath != null){
 			Image i = Toolkit.getDefaultToolkit().getImage(iconPath);
 			
-			System.out.println("Image Height: "+i.getHeight(null));
-			System.out.println("Image Width: "+i.getWidth(null));
 			
 //			i = i.getScaledInstance((int)(SQUARE_SIZE*0.8)+1, (int)(SQUARE_SIZE*0.8)+1, Image.SCALE_SMOOTH);
 			
-			System.out.println("Image Height: "+i.getHeight(null));
-			System.out.println("Image Width: "+i.getWidth(null));
 			
 			
 			g2.drawImage(i, x+SQUARE_SIZE/2 - i.getWidth(null)/2,
