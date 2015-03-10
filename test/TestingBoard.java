@@ -65,7 +65,6 @@ public class TestingBoard{
 				f.add(statusBar, BorderLayout.SOUTH);
 				
 				f.pack();
-				
 			}
 		};
 		SwingUtilities.invokeLater(r);
