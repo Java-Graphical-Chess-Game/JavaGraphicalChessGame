@@ -28,7 +28,7 @@ public class TestingBoard{
 				
 				ChessBoardTest c = new ChessBoardTest();
 				c.setSize(c.getPreferredSize());
-				c.squares[0][0].iconPath = "/home/zshulu/Chess/bbishop.png";
+				//c.squares[0][0].iconPath = "/home/zshulu/Chess/bbishop.png";
 				c.paintComponent(f.getGraphics());
 				
 				JPanel tools = new JPanel();

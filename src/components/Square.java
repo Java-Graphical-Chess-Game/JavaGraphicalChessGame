@@ -1,3 +1,5 @@
+package components;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -5,46 +7,64 @@ import java.awt.Image;
 import java.awt.geom.Rectangle2D;
 import java.awt.Toolkit;
 
+import components.pieces.Piece;
+
 
 public class Square {
 
-	private Color color;
-	private int x, y;
 	public static int SQUARE_SIZE = 10;
+
+	private Color color;
+	private int x, y, indexX, indexY;
 	private boolean selected = false;
-	public String iconPath;
+	private String iconPath;
+	private Piece piece;
 	
-	public void setHL(){
+	public void setHilighted(){
 		color = new Color(248, 242, 114);
 		selected = true;
 	}
 	
 	public boolean isSelected(){ return selected; }
 	
-	public Square(int x, int y){
+	public Square(int x, int y, int indexX, int indexY){
 		this.x = x;
 		this.y = y;
+		
+		this.indexX = indexX;
+		this.indexY = indexY;
+		
 		setColor();
 	}
 	
-	protected void setX(int x){ this.x = x; }
-	protected void setY(int y){ this.y = y; }
+	public void setGraphicalX(int x){ this.x = x; }
+	public void setGraphicalY(int y){ this.y = y; }
 	
 	public void setSize(int s){
 		SQUARE_SIZE = s;
 	}
 	
-	protected void setColor(){
-		if(!((x/SQUARE_SIZE)%2 == 0 ^ (y/SQUARE_SIZE)%2 == 0))
-			color = Color.darkGray;
-		else color = Color.white;
+	public void setColor(){
+		if(!(indexX%2 == 0 ^ indexY%2 == 0))
+			color = Color.BLACK;
+		else color = Color.WHITE;
 		selected = false;
 	}
 	
 	public Color getColor(){ return color; }
-	public int getX(){ return x; }
-	public int getY(){ return y; }
+	
+	public void setPiece(Piece piece) {
+		this.piece = piece;
+	}
+	
+	public Piece getPiece() { return piece; }
 
+	public int getGraphicalX(){ return x; }
+	public int getGraphicalY(){ return y; }
+	
+	public int getX(){ return indexX; }
+	public int getY(){ return indexY; }
+	
 	
 	public void draw(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
@@ -69,4 +89,5 @@ public class Square {
 		
 		}
 	}
+
 }

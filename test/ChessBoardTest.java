@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -7,6 +6,8 @@ import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JPanel;
+
+import components.Square;
 
 
 public class ChessBoardTest extends JPanel implements MouseListener{
@@ -18,7 +19,7 @@ public class ChessBoardTest extends JPanel implements MouseListener{
 		super(new GridLayout(10, 10));
 		for(int i=0; i<8; i++)
 			for(int j=0; j<8; j++)
-				squares[i][j] = new Square(i*Square.SQUARE_SIZE, j*Square.SQUARE_SIZE);
+				squares[i][j] = new Square(i*Square.SQUARE_SIZE, j*Square.SQUARE_SIZE, i, j);
 		//int prefSize = 8 * Square.SQUARE_SIZE;
 		setPreferredSize(getPreferredSize());
 		
@@ -35,8 +36,8 @@ public class ChessBoardTest extends JPanel implements MouseListener{
 		for(int i=0; i<8; i++){
 			for(int j=0; j<8; j++){
 				s = squares[i][j];
-				s.setX(i*Square.SQUARE_SIZE);
-				s.setY(j*Square.SQUARE_SIZE);
+				s.setGraphicalX(i*Square.SQUARE_SIZE);
+				s.setGraphicalY(j*Square.SQUARE_SIZE);
 				s.draw(g);
 			}
 		}
@@ -51,7 +52,7 @@ public class ChessBoardTest extends JPanel implements MouseListener{
 		Square selected = squares
 			[e.getX()/Square.SQUARE_SIZE]
 			[e.getY()/Square.SQUARE_SIZE];
-		if(!selected.isSelected()) selected.setHL();
+		if(!selected.isSelected()) selected.setHilighted();
 		else selected.setColor();
 		redraw();
 	}
