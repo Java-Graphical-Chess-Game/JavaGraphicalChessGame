@@ -16,12 +16,12 @@ public class Motion {
 				if(s.getPiece().getColor().equals(currentColor))
 					break;
 				else{
-					s.getPiece().addPossibleSquare(s);
+					start.getPiece().addPossibleSquare(s);
 					break;
 				} 
 			}
 			else{
-				s.getPiece().addPossibleSquare(s);
+				start.getPiece().addPossibleSquare(s);
 			}
 		}
 
@@ -40,12 +40,12 @@ public class Motion {
 				if(s.getPiece().getColor().equals(currentColor))
 					break;
 				else{
-					s.getPiece().addPossibleSquare(s);
+					start.getPiece().addPossibleSquare(s);
 					break;
 				} 
 			}
 			else{
-				s.getPiece().addPossibleSquare(s);
+				start.getPiece().addPossibleSquare(s);
 			}
 		}
 
@@ -65,12 +65,12 @@ public class Motion {
 				if(s.getPiece().getColor().equals(currentColor))
 					break;
 				else{
-					s.getPiece().addPossibleSquare(s);
+					start.getPiece().addPossibleSquare(s);
 					break;
 				} 
 			}
 			else{
-				s.getPiece().addPossibleSquare(s);
+				start.getPiece().addPossibleSquare(s);
 			}
 		}
 
@@ -91,12 +91,12 @@ public class Motion {
 				if(s.getPiece().getColor().equals(currentColor))
 					break;
 				else{
-					s.getPiece().addPossibleSquare(s);
+					start.getPiece().addPossibleSquare(s);
 					break;
 				} 
 			}
 			else{
-				s.getPiece().addPossibleSquare(s);
+				start.getPiece().addPossibleSquare(s);
 			}
 		}
 
@@ -116,12 +116,12 @@ public class Motion {
 				if(s.getPiece().getColor().equals(currentColor))
 					break;
 				else{
-					s.getPiece().addPossibleSquare(s);
+					start.getPiece().addPossibleSquare(s);
 					break;
 				} 
 			}
 			else{
-				s.getPiece().addPossibleSquare(s);
+				start.getPiece().addPossibleSquare(s);
 			}
 		}
 
@@ -142,12 +142,12 @@ public class Motion {
 				if(s.getPiece().getColor().equals(currentColor))
 					break;
 				else{
-					s.getPiece().addPossibleSquare(s);
+					start.getPiece().addPossibleSquare(s);
 					break;
 				} 
 			}
 			else{
-				s.getPiece().addPossibleSquare(s);
+				start.getPiece().addPossibleSquare(s);
 			}
 		}
 
@@ -168,12 +168,12 @@ public class Motion {
 				if(s.getPiece().getColor().equals(currentColor))
 					break;
 				else{
-					s.getPiece().addPossibleSquare(s);
+					start.getPiece().addPossibleSquare(s);
 					break;
 				} 
 			}
 			else{
-				s.getPiece().addPossibleSquare(s);
+				start.getPiece().addPossibleSquare(s);
 			}
 		}
 
@@ -192,12 +192,12 @@ public class Motion {
 				if(s.getPiece().getColor().equals(currentColor))
 					break;
 				else{
-					s.getPiece().addPossibleSquare(s);
+					start.getPiece().addPossibleSquare(s);
 					break;
 				} 
 			}
 			else{
-				s.getPiece().addPossibleSquare(s);
+				start.getPiece().addPossibleSquare(s);
 			}
 		}
 

@@ -11,14 +11,14 @@ import components.pieces.Piece;
 
 
 public class Square {
-
+	
+	public final static Square INEXISTANT = new Square(-1, -1, -1, -1);
 	public static int SQUARE_SIZE = 10;
 
 	private Color color;
 	private int x, y, indexX, indexY;
 	private boolean selected = false;
-	private String iconPath;
-	private Piece piece;
+	protected Piece piece;
 	
 	public void setHilighted(){
 		color = new Color(248, 242, 114);
@@ -45,8 +45,8 @@ public class Square {
 	}
 	
 	public void setColor(){
-		if(!(indexX%2 == 0 ^ indexY%2 == 0))
-			color = Color.BLACK;
+		if(indexX%2 == 0 ^ indexY%2 == 0)
+			color = Color.DARK_GRAY;
 		else color = Color.WHITE;
 		selected = false;
 	}
@@ -72,8 +72,8 @@ public class Square {
 		g2.setColor(this.color);
 		g2.fill(r);
 		
-		if(iconPath != null){
-			Image i = Toolkit.getDefaultToolkit().getImage(iconPath);
+		if(piece != null && piece.getImagePath() != ""){
+			Image i = Toolkit.getDefaultToolkit().getImage(piece.getImagePath());
 			
 			
 //			i = i.getScaledInstance((int)(SQUARE_SIZE*0.8)+1, (int)(SQUARE_SIZE*0.8)+1, Image.SCALE_SMOOTH);

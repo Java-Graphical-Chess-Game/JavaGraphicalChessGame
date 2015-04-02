@@ -16,14 +16,14 @@ public class Move {
 	
 	
 	/**
-	 * @return the start
+	 * @return the start square
 	 */
 	public Square getStart() {
 		return start;
 	}
 
 	/**
-	 * @return the end
+	 * @return the end square
 	 */
 	public Square getEnd() {
 		return end;

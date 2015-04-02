@@ -20,9 +20,23 @@ public class LShapedDirection extends Direction {
 
 	@Override
 	public void generateValidSquares(Square start, Board board) {
-		// TODO
+		checkAndAdd(start, 1, 2, board);
+		checkAndAdd(start, -1, 2, board);
+		checkAndAdd(start, 1, -2, board);
+		checkAndAdd(start, -1, -2, board);
+		checkAndAdd(start, 2, 1, board);
+		checkAndAdd(start, -2, 1, board);
+		checkAndAdd(start, 2, -1, board);
+		checkAndAdd(start, -2, -1, board);
 	}
-
 	
+	private void checkAndAdd(Square start, int dx, int dy, Board board){
+		Square tmp = board.getSquare(start.getX() + dx, start.getY() + dy);
+		if(tmp.equals(Square.INEXISTANT)) return;
+		if(tmp.getPiece() == null)
+			start.getPiece().addPossibleSquare(tmp);
+		else if(tmp.getPiece().getColor() != start.getPiece().getColor())
+			start.getPiece().addPossibleSquare(tmp);
+	}
 	
 }
