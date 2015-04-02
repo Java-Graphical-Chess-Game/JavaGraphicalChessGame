@@ -25,7 +25,7 @@ public class Set {
 	
 	private void createBlackSet(){
 		piecesPositions = new HashMap<Piece, Square>();
-		piecesPositions.put(new King(Color.WHITE), 		board.getSquare(4, 0));
+		piecesPositions.put(new King(Color.WHITE), 		board.getSquare(4, 0));    
 		piecesPositions.put(new Queen(Color.WHITE), 	board.getSquare(3, 0));    
 		piecesPositions.put(new Rook(Color.WHITE), 		board.getSquare(7, 0));    
 		piecesPositions.put(new Knight(Color.WHITE), 	board.getSquare(6, 0));    
@@ -41,26 +41,26 @@ public class Set {
 		piecesPositions.put(new Pawn(Color.WHITE), 		board.getSquare(2, 1));    
 		piecesPositions.put(new Pawn(Color.WHITE), 		board.getSquare(1, 1));    
 		piecesPositions.put(new Pawn(Color.WHITE), 		board.getSquare(0, 1));    
-	}                                                                             
-	
-	private void createWhiteSet(){
-		piecesPositions = new HashMap<Piece, Square>();
-		piecesPositions.put(new King(Color.BLACK), 		board.getSquare(4, 7));             
-		piecesPositions.put(new Queen(Color.BLACK), 	board.getSquare(3, 7));             
-		piecesPositions.put(new Rook(Color.BLACK), 		board.getSquare(7, 7));             
-		piecesPositions.put(new Knight(Color.BLACK), 	board.getSquare(6, 7));             
-		piecesPositions.put(new Bishop(Color.BLACK), 	board.getSquare(5, 7));             
-		piecesPositions.put(new Rook(Color.BLACK), 		board.getSquare(0, 7));             
-		piecesPositions.put(new Knight(Color.BLACK), 	board.getSquare(1, 7));             
-		piecesPositions.put(new Bishop(Color.BLACK), 	board.getSquare(2, 7));             
-		piecesPositions.put(new Pawn(Color.BLACK), 		board.getSquare(7, 6));             
-		piecesPositions.put(new Pawn(Color.BLACK), 	 	board.getSquare(6, 6));             
-		piecesPositions.put(new Pawn(Color.BLACK), 		board.getSquare(5, 6));             
-		piecesPositions.put(new Pawn(Color.BLACK), 		board.getSquare(4, 6));             
-		piecesPositions.put(new Pawn(Color.BLACK), 		board.getSquare(3, 6));             
-		piecesPositions.put(new Pawn(Color.BLACK), 		board.getSquare(2, 6));             
-		piecesPositions.put(new Pawn(Color.BLACK), 		board.getSquare(1, 6));             
-		piecesPositions.put(new Pawn(Color.BLACK), 		board.getSquare(0, 6));             
+	}                                                                              
+	                                                                               
+	private void createWhiteSet(){                                                 
+		piecesPositions = new HashMap<Piece, Square>();                            
+		piecesPositions.put(new King(Color.BLACK), 		board.getSquare(4, 7));    
+		piecesPositions.put(new Queen(Color.BLACK), 	board.getSquare(3, 7));    
+		piecesPositions.put(new Rook(Color.BLACK), 		board.getSquare(7, 7));    
+		piecesPositions.put(new Knight(Color.BLACK), 	board.getSquare(6, 7));    
+		piecesPositions.put(new Bishop(Color.BLACK), 	board.getSquare(5, 7));    
+		piecesPositions.put(new Rook(Color.BLACK), 		board.getSquare(0, 7));    
+		piecesPositions.put(new Knight(Color.BLACK), 	board.getSquare(1, 7));    
+		piecesPositions.put(new Bishop(Color.BLACK), 	board.getSquare(2, 7));    
+		piecesPositions.put(new Pawn(Color.BLACK), 		board.getSquare(7, 6));    
+		piecesPositions.put(new Pawn(Color.BLACK), 	 	board.getSquare(6, 6));    
+		piecesPositions.put(new Pawn(Color.BLACK), 		board.getSquare(5, 6));    
+		piecesPositions.put(new Pawn(Color.BLACK), 		board.getSquare(4, 6));    
+		piecesPositions.put(new Pawn(Color.BLACK), 		board.getSquare(3, 6));    
+		piecesPositions.put(new Pawn(Color.BLACK), 		board.getSquare(2, 6));    
+		piecesPositions.put(new Pawn(Color.BLACK), 		board.getSquare(1, 6));    
+		piecesPositions.put(new Pawn(Color.BLACK), 		board.getSquare(0, 6));    
 	}
 
 	

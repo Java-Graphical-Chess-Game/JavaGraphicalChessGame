@@ -17,6 +17,7 @@ public class GraphicalBoard  extends JPanel implements MouseListener{
 	private static final long serialVersionUID = 4708082910655534101L;
 
 	private Board board;
+	private boolean existsSelectedSquare = false;
 	
 	public GraphicalBoard(Board board){
 		super(new GridLayout(10, 10));
@@ -24,6 +25,8 @@ public class GraphicalBoard  extends JPanel implements MouseListener{
 		setPreferredSize(getPreferredSize());
 		addMouseListener(this);
 	}
+	
+	public boolean hasSelectedSquare(){ return existsSelectedSquare; }
 	
 	@Override
 	public void paintComponent(Graphics g) {
@@ -52,9 +55,16 @@ public class GraphicalBoard  extends JPanel implements MouseListener{
 		Square selected = board.getSquare
 				(e.getX()/Square.SQUARE_SIZE,
 				 e.getY()/Square.SQUARE_SIZE);
-			if(!selected.isSelected()) selected.setHilighted();
-			else selected.setColor();
+			if(!selected.isSelected()){
+				selected.setHilighted();
+				existsSelectedSquare = true;
+			}
+			else{
+				selected.setColor();
+				existsSelectedSquare = false;
+			}
 			redraw();
+			System.out.println(selected.getX() +" " + selected.getY());
 	}
 
 	@Override

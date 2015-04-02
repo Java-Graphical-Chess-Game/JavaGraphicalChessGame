@@ -32,7 +32,6 @@ public class ChessFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		guiBoard.setSize(guiBoard.getPreferredSize());
-		//c.squares[0][0].iconPath = "/home/zshulu/Chess/bbishop.png";
 		guiBoard.paintComponent(getGraphics());
 		
 		JPanel tools = new JPanel();
