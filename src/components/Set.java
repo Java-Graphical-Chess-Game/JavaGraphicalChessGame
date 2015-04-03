@@ -70,6 +70,7 @@ public class Set {
 			x = piecesPositions.get(p).getX();
 			y = piecesPositions.get(p).getY();
 			board.squares[x][y].piece = p;
+			p.setSquare(board.squares[x][y]);
 		}
 
 	}

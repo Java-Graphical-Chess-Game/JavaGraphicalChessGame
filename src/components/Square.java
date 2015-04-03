@@ -18,11 +18,17 @@ public class Square {
 	private Color color;
 	private int x, y, indexX, indexY;
 	private boolean selected = false;
+	private boolean highlighted = false;
 	protected Piece piece;
 	
-	public void setHilighted(){
+	public void setSelected(){
 		color = new Color(248, 242, 114);
 		selected = true;
+	}
+	
+	public void setHighlighted(){
+		color = new Color(100, 137, 97);
+		highlighted = true;
 	}
 	
 	public boolean isSelected(){ return selected; }
@@ -49,6 +55,7 @@ public class Square {
 			color = Color.DARK_GRAY;
 		else color = Color.WHITE;
 		selected = false;
+		highlighted = false;
 	}
 	
 	public Color getColor(){ return color; }
@@ -88,6 +95,20 @@ public class Square {
 //					y+SQUARE_SIZE/2 - i.getHeight(null)/2, null);
 		
 		}
+	}
+
+	public boolean isHighlighted() {
+		return highlighted;
+	}
+
+	public Piece deletePiece() {
+		Piece p = this.piece;
+		this.piece = null;
+		return p;
+	}
+
+	protected void insertPiece(Piece moved) {
+		this.piece = moved;
 	}
 
 }

@@ -9,6 +9,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 
+import checker.moveSystem.Move;
+
 import components.Board;
 import components.Square;
 
@@ -18,21 +20,22 @@ public class GraphicalBoard  extends JPanel implements MouseListener{
 
 	private Board board;
 	private boolean existsSelectedSquare = false;
-	
+	private Square selectedSquare = Square.INEXISTANT;
+
 	public GraphicalBoard(Board board){
 		super(new GridLayout(10, 10));
 		this.board = board;
 		setPreferredSize(getPreferredSize());
 		addMouseListener(this);
 	}
-	
+
 	public boolean hasSelectedSquare(){ return existsSelectedSquare; }
-	
+
 	@Override
 	public void paintComponent(Graphics g) {
 		draw(g);
 	}
-	
+
 	private void draw(Graphics g){
 		Square s;
 		for(int i=0; i<8; i++){
@@ -44,7 +47,7 @@ public class GraphicalBoard  extends JPanel implements MouseListener{
 			}
 		}
 	}
-	
+
 	public void redraw(){
 		paintComponent(this.getGraphics());
 	}
@@ -54,17 +57,35 @@ public class GraphicalBoard  extends JPanel implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		Square selected = board.getSquare
 				(e.getX()/Square.SQUARE_SIZE,
-				 e.getY()/Square.SQUARE_SIZE);
-			if(!selected.isSelected()){
-				selected.setHilighted();
-				existsSelectedSquare = true;
+						e.getY()/Square.SQUARE_SIZE);
+
+		if(existsSelectedSquare){ // was waiting for move of selected piece
+			if(selected.isHighlighted()){ // is a valid move
+				Move m;
+				if((m = new Move(selectedSquare, selected))!=null)
+					selectedSquare.getPiece().executeMove(m, board);
 			}
-			else{
-				selected.setColor();
-				existsSelectedSquare = false;
-			}
+			board.resetSquares();
+			existsSelectedSquare = false;
+			selectedSquare = Square.INEXISTANT;
 			redraw();
-			System.out.println(selected.getX() +" " + selected.getY());
+			return;
+		}
+
+		if(selected.getPiece() == null) return; //no piece here
+		redraw();
+		if(!selected.isSelected()){
+			selected.setSelected();
+			existsSelectedSquare = true;
+			selectedSquare = selected;
+			selected.getPiece().askForSquares(board);
+		}
+		else{
+			board.resetSquares();
+			existsSelectedSquare = false;
+			selectedSquare = Square.INEXISTANT;
+		}
+		redraw();
 	}
 
 	@Override
@@ -79,7 +100,7 @@ public class GraphicalBoard  extends JPanel implements MouseListener{
 	@Override
 	public void mouseReleased(MouseEvent arg0) {}
 
-	
+
 	@Override
 	public Dimension getPreferredSize() {
 		Dimension d = super.getPreferredSize();
@@ -88,31 +109,31 @@ public class GraphicalBoard  extends JPanel implements MouseListener{
 		if(c == null)
 			prefSize = new Dimension(
 					(int)d.getWidth(), (int)d.getHeight()
-			);
-		
+					);
+
 		else if(c.getWidth() > d.getWidth() && c.getHeight() > d.getHeight())
 			prefSize = c.getSize();
 		else
 			prefSize = d;
-		
+
 		int w = (int)prefSize.getWidth();
 		int h = (int)prefSize.getHeight();
-		
+
 		int s = (w>h? h:w);
 		Square.SQUARE_SIZE = s/8;
 		return new Dimension(s, s);
-			
+
 	}
-	
+
 	public JPanel getConstraintPanel() {
 		JPanel containsChessBoard = new JPanel(new GridBagLayout());
 		//containsChessBoard.setBorder(new CompoundBorder(new EmptyBorder(10,10,10,10),
-			//	new LineBorder(Color.BLACK)));
+		//	new LineBorder(Color.BLACK)));
 		containsChessBoard.setOpaque(false);
 		containsChessBoard.add(this);
 		containsChessBoard.setSize(containsChessBoard.getPreferredSize());
-		
+
 		return containsChessBoard;
 	}
-	
+
 }

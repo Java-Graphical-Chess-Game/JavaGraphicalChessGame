@@ -5,6 +5,10 @@ import gui.GraphicalBoard;
 
 import java.awt.Color;
 
+import components.pieces.Piece;
+
+import checker.moveSystem.Move;
+
 public class Board {
 	
 	protected Square squares [][] = new Square[8][8];
@@ -33,4 +37,26 @@ public class Board {
 		return null;
 	}
 
+	public void resetSquares() {
+		for(Square ss[] : squares)
+			for(Square s : ss)
+				s.setColor();
+		
+	}
+
+	public void executeMove(Move move) {
+		if(move == null) return;
+		Piece moved = move.getStart().getPiece();
+		move.getStart().deletePiece();
+		if(move.getEnd() != null)
+			moved.setVictim(move.getEnd().deletePiece());
+		move.getEnd().insertPiece(moved);
+	}
+
+	
+	// for debugging
+	public void redraw(){
+		guiBoard.redraw();
+	}
+	
 }

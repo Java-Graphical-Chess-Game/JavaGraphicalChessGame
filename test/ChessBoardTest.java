@@ -52,7 +52,7 @@ public class ChessBoardTest extends JPanel implements MouseListener{
 		Square selected = squares
 			[e.getX()/Square.SQUARE_SIZE]
 			[e.getY()/Square.SQUARE_SIZE];
-		if(!selected.isSelected()) selected.setHilighted();
+		if(!selected.isSelected()) selected.setSelected();
 		else selected.setColor();
 		redraw();
 	}

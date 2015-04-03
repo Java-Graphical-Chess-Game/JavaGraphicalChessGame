@@ -28,5 +28,5 @@ public class Move {
 	public Square getEnd() {
 		return end;
 	}
-	
+
 }

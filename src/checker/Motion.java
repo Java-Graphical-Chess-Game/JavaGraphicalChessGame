@@ -7,13 +7,14 @@ public class Motion {
 	public static void fetchUpSquares(Square start, Board board){
 		int startX=start.getX();
 		int startY=start.getY();
-		int tmpY = startY;
+		int tmpY = startY - 1;
 		Square s;
 		String currentColor = start.getPiece().getColor();
 		for(;tmpY >= 0;tmpY--){
 			s = board.getSquare(startX, tmpY);
 			if(s.getPiece() != null){
-				if(s.getPiece().getColor().equals(currentColor))
+				
+				if(s.getPiece().getColor() == currentColor)
 					break;
 				else{
 					start.getPiece().addPossibleSquare(s);
@@ -31,14 +32,15 @@ public class Motion {
 	public static void fetchDownSquares(Square start, Board board){
 		int startX=start.getX();
 		int startY=start.getY();
-		int tmpY = startY;
+		int tmpY = startY + 1;
 		Square s;
 		String currentColor = start.getPiece().getColor();
 		for(;tmpY < 8;tmpY++){
 			s = board.getSquare(startX, tmpY);
 			if(s.getPiece() != null){
-				if(s.getPiece().getColor().equals(currentColor))
-					break;
+				
+				if(s.getPiece().getColor() == currentColor)
+						break;
 				else{
 					start.getPiece().addPossibleSquare(s);
 					break;
@@ -49,20 +51,20 @@ public class Motion {
 			}
 		}
 
-
 	}
 
 
 	public static void fetchLeftSquares(Square start, Board board){
 		int startX=start.getX();
 		int startY=start.getY();
-		int tmpX = startX;
+		int tmpX = startX - 1;
 		Square s;
 		String currentColor = start.getPiece().getColor();
 		for(;tmpX >= 0;tmpX--){
 			s = board.getSquare(tmpX, startY);
 			if(s.getPiece() != null){
-				if(s.getPiece().getColor().equals(currentColor))
+				
+				if(s.getPiece().getColor() == currentColor)
 					break;
 				else{
 					start.getPiece().addPossibleSquare(s);
@@ -82,13 +84,14 @@ public class Motion {
 	public static void fetchRightSquares(Square start, Board board){
 		int startX=start.getX();
 		int startY=start.getY();
-		int tmpX = startX;
+		int tmpX = startX + 1;
 		Square s;
 		String currentColor = start.getPiece().getColor();
 		for(;tmpX <8;tmpX++){
 			s = board.getSquare(tmpX, startY);
 			if(s.getPiece() != null){
-				if(s.getPiece().getColor().equals(currentColor))
+				
+				if(s.getPiece().getColor() == currentColor)
 					break;
 				else{
 					start.getPiece().addPossibleSquare(s);
@@ -107,13 +110,14 @@ public class Motion {
 	public static void fetchUpLeftSquares(Square start, Board board){
 		int startX=start.getX();
 		int startY=start.getY();
-		int tmpX = startX, tmpY = startY;
+		int tmpX = startX - 1, tmpY = startY - 1;
 		Square s;
 		String currentColor = start.getPiece().getColor();
 		for(;tmpX >= 0 && tmpY >= 0;tmpX--, tmpY--){
 			s = board.getSquare(tmpX, tmpY);
 			if(s.getPiece() != null){
-				if(s.getPiece().getColor().equals(currentColor))
+				
+				if(s.getPiece().getColor() == currentColor)
 					break;
 				else{
 					start.getPiece().addPossibleSquare(s);
@@ -133,13 +137,14 @@ public class Motion {
 	public static void fetchUpRightSquares(Square start, Board board){
 		int startX=start.getX();
 		int startY=start.getY();
-		int tmpX = startX, tmpY = startY;
+		int tmpX = startX + 1, tmpY = startY - 1;
 		Square s;
 		String currentColor = start.getPiece().getColor();
 		for(;tmpX < 8 && tmpY >= 0;tmpX++, tmpY--){
 			s = board.getSquare(tmpX, tmpY);
 			if(s.getPiece() != null){
-				if(s.getPiece().getColor().equals(currentColor))
+				
+				if(s.getPiece().getColor() == currentColor)
 					break;
 				else{
 					start.getPiece().addPossibleSquare(s);
@@ -159,13 +164,14 @@ public class Motion {
 	public static void fetchDownLeftSquares(Square start, Board board){
 		int startX=start.getX();
 		int startY=start.getY();
-		int tmpX = startX, tmpY = startY;
+		int tmpX = startX - 1, tmpY = startY + 1;
 		Square s;
 		String currentColor = start.getPiece().getColor();
 		for(;tmpX >= 0 && tmpY < 8;tmpX--, tmpY++){
 			s = board.getSquare(tmpX, tmpY);
 			if(s.getPiece() != null){
-				if(s.getPiece().getColor().equals(currentColor))
+				
+				if(s.getPiece().getColor() == currentColor)
 					break;
 				else{
 					start.getPiece().addPossibleSquare(s);
@@ -183,13 +189,14 @@ public class Motion {
 	public static void fetchDownRightSquares(Square start, Board board){
 		int startX=start.getX();
 		int startY=start.getY();
-		int tmpX = startX, tmpY = startY;
+		int tmpX = startX + 1, tmpY = startY + 1;
 		Square s;
 		String currentColor = start.getPiece().getColor();
 		for(;tmpX < 8 && tmpY < 8;tmpX++, tmpY++){
 			s = board.getSquare(tmpX, tmpY);
 			if(s.getPiece() != null){
-				if(s.getPiece().getColor().equals(currentColor))
+				
+				if(s.getPiece().getColor() == currentColor)
 					break;
 				else{
 					start.getPiece().addPossibleSquare(s);

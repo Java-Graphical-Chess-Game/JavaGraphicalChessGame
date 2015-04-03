@@ -45,6 +45,12 @@ public class Game {
 			}
 		};
 		SwingUtilities.invokeLater(r);
+	
+		// wait for user input
+		// process input
+		// check state
+		// switch turn
+		// repeat
 	}
 	
 }

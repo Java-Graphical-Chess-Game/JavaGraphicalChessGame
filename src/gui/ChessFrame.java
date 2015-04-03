@@ -18,7 +18,7 @@ public class ChessFrame extends JFrame {
 
 	private static final long serialVersionUID = 591882616190547773L;
 
-	Action newGame, saveGame, loadGame, abandonGame;
+	Action newGame, saveGame, loadGame, abandonGame, undo, redo;
 	
 	public ChessFrame() throws HeadlessException {}
 
@@ -43,8 +43,6 @@ public class ChessFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 			
 		};
@@ -54,8 +52,6 @@ public class ChessFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 			
 		};
@@ -65,8 +61,6 @@ public class ChessFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 			
 		};
@@ -76,28 +70,50 @@ public class ChessFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 			
 		};
 		
+		undo 		= new AbstractAction("Undo"){
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			}
+			
+		};
+		
+		redo 		= new AbstractAction("Redo"){
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			}
+			
+		};
+				
 		newGame 	    .setEnabled(true);
 		saveGame 	    .setEnabled(false);
 		loadGame 	    .setEnabled(true);
 		abandonGame     .setEnabled(false);
+		undo     		.setEnabled(false);
+		redo 			.setEnabled(false);
 		
-		JButton newButton= new JButton(newGame);
-		JButton saveButton= new JButton(saveGame);
-		JButton loadButton= new JButton(loadGame);
-		JButton abandonButton= new JButton(abandonGame);
+		JButton newButton 	  = new JButton(newGame);
+		JButton saveButton 	  = new JButton(saveGame);
+		JButton loadButton 	  = new JButton(loadGame);
+		JButton abandonButton = new JButton(abandonGame);
+		JButton undoButton    = new JButton(undo);
+		JButton redoButton    = new JButton(redo);
 		
 		toolbar.add(newButton);
 		toolbar.add(saveButton);
 		toolbar.add(loadButton);
 		toolbar.addSeparator();
 		toolbar.add(abandonButton);
-		
+		toolbar.addSeparator();
+		toolbar.add(undoButton);
+		toolbar.add(redoButton);
 		tools.add(toolbar);
 		add(tools, BorderLayout.NORTH);
 		add(constraint, BorderLayout.CENTER);

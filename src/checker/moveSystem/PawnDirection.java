@@ -26,41 +26,55 @@ public class PawnDirection extends Direction {
 	public void generateValidSquares(Square start, Board board) {
 		Pawn p = (Pawn)start.getPiece();
 		Square tmp;
-		if(p.getColor().equals(Color.WHITE)){
+		if(p.getColor() == "White"){
 			tmp = board.getSquare(start.getX(), start.getY()+1);
 			if(tmp.getPiece() == null) p.addPossibleSquare(tmp);
-			else if (tmp.getPiece().getColor() != start.getPiece().getColor())
-				p.addPossibleSquare(tmp);
 			if(!p.hasMoved() && !p.doubleStepped()){
 				tmp = board.getSquare(start.getX(), start.getY()+2);
 				if(tmp.getPiece() == null) p.addPossibleSquare(tmp);
-				else if (tmp.getPiece().getColor() != start.getPiece().getColor())
-					p.addPossibleSquare(tmp);
 			}
+			
+			// Attacking
 			tmp = board.getSquare(start.getX()+1, start.getY()+1);
-			if(tmp.getPiece() != null) p.addPossibleSquare(tmp);
+			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "Black") p.addPossibleSquare(tmp);
 			
 			tmp = board.getSquare(start.getX()-1, start.getY()+1);
-			if(tmp.getPiece() != null) p.addPossibleSquare(tmp);
+			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "Black") p.addPossibleSquare(tmp);
 			
+			// En-Passant
+			tmp = board.getSquare(start.getX() - 1, start.getY());
+			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "Black")
+				p.addPossibleSquare(board.getSquare(start.getX()-1, start.getY()+1));
+			
+			tmp = board.getSquare(start.getX() + 1, start.getY());
+			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "Black")
+				p.addPossibleSquare(board.getSquare(start.getX()+1, start.getY()+1));
 		}
-		else if(p.getColor().equals(Color.BLACK)){
+		else if(p.getColor() == "Black"){
 			tmp = board.getSquare(start.getX(), start.getY()-1);
 			if(tmp.getPiece() == null) p.addPossibleSquare(tmp);
-			else if (tmp.getPiece().getColor() != start.getPiece().getColor())
-				p.addPossibleSquare(tmp);
 			if(!p.hasMoved() && !p.doubleStepped()){
 				tmp = board.getSquare(start.getX(), start.getY()-2);
 				if(tmp.getPiece() == null) p.addPossibleSquare(tmp);
-				else if (tmp.getPiece().getColor() != start.getPiece().getColor())
-					p.addPossibleSquare(tmp);
 			}
+			
+			// Attacking
 			tmp = board.getSquare(start.getX()+1, start.getY()-1);
-			if(tmp.getPiece() != null) p.addPossibleSquare(tmp);
+			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "White") p.addPossibleSquare(tmp);
 			
 			tmp = board.getSquare(start.getX()-1, start.getY()-1);
-			if(tmp.getPiece() != null) p.addPossibleSquare(tmp);
+			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "White") p.addPossibleSquare(tmp);
 			
+			// En passant
+			tmp = board.getSquare(start.getX() - 1, start.getY());
+			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "White"){
+				p.addPossibleSquare(board.getSquare(start.getX()-1, start.getY()-1));
+			}
+			
+			tmp = board.getSquare(start.getX() + 1, start.getY());
+			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "White"){
+				p.addPossibleSquare(board.getSquare(start.getX()+1, start.getY()-1));
+			}
 		}
 	}
 

@@ -24,7 +24,7 @@ public class DiagonalDirection extends Direction {
 		Motion.fetchUpLeftSquares(start, board);
 		Motion.fetchDownLeftSquares(start, board);
 		Motion.fetchUpRightSquares(start, board);
-		Motion.fetchUpRightSquares(start, board);
+		Motion.fetchDownRightSquares(start, board);
 		
 	}
 
