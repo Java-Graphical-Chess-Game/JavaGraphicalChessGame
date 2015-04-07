@@ -26,7 +26,7 @@ public abstract class Piece {
 	
 	
 	public void askForSquares(Board board){
-		resetSquares();
+		resetSquares(); // reset colors
 		generalmove.getDirection().generateValidSquares(square, board);
 		ArrayList<Square> squaresToRemove = new ArrayList<Square>();
 		
