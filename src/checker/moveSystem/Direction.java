@@ -1,7 +1,6 @@
 package checker.moveSystem;
 
 import java.awt.Color;
-
 import components.Board;
 import components.Square;
 
