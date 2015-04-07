@@ -136,4 +136,8 @@ public class GraphicalBoard  extends JPanel implements MouseListener{
 		return containsChessBoard;
 	}
 
+	
+	public Board getBoard(){
+		return board;
+	}
 }

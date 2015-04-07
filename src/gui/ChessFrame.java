@@ -1,6 +1,8 @@
 package gui;
 
 
+import game.Game;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
@@ -18,7 +20,8 @@ public class ChessFrame extends JFrame {
 
 	private static final long serialVersionUID = 591882616190547773L;
 
-	Action newGame, saveGame, loadGame, abandonGame, undo, redo;
+	private Action newGame, saveGame, loadGame, abandonGame, undo, redo;
+	private Game game;
 	
 	public ChessFrame() throws HeadlessException {}
 
@@ -31,7 +34,7 @@ public class ChessFrame extends JFrame {
 		
 		guiBoard.setSize(guiBoard.getPreferredSize());
 		guiBoard.paintComponent(getGraphics());
-		
+		this.game = guiBoard.getBoard().getGame();
 		JPanel constraint = guiBoard.getConstraintPanel();
 		JPanel tools = new JPanel();
 		JToolBar toolbar = new JToolBar();
@@ -40,9 +43,12 @@ public class ChessFrame extends JFrame {
 		
 		newGame 		= new AbstractAction("New Game"){
 			private static final long serialVersionUID = 1L;
-
+				
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				game.end();
+				game = new Game();
+				game.run();
 			}
 			
 		};
@@ -52,6 +58,7 @@ public class ChessFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 			
 		};
@@ -70,6 +77,15 @@ public class ChessFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+//				Dialog d = new Dialog(null, "Resign Game", null, null);
+//				d.setLayout(getLayout());
+//				JLabel j = new JLabel("Would you like to resign the current game?");
+//				JButton yes = new JButton("Yes");
+//				JButton no = new JButton("No");
+//				d.add(j);
+//				d.add(yes);
+//				d.add(no);
+//				d.setVisible(true);
 			}
 			
 		};
@@ -95,7 +111,7 @@ public class ChessFrame extends JFrame {
 		newGame 	    .setEnabled(true);
 		saveGame 	    .setEnabled(false);
 		loadGame 	    .setEnabled(true);
-		abandonGame     .setEnabled(false);
+		abandonGame     .setEnabled(true);
 		undo     		.setEnabled(false);
 		redo 			.setEnabled(false);
 		

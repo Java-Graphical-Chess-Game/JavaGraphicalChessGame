@@ -41,7 +41,7 @@ public class PawnDirection extends Direction {
 			tmp = board.getSquare(start.getX()-1, start.getY()+1);
 			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "Black") p.addPossibleSquare(tmp);
 			
-			// En-Passant
+			// En-Passant TODO FIX, Wrong
 			tmp = board.getSquare(start.getX() - 1, start.getY());
 			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "Black")
 				p.addPossibleSquare(board.getSquare(start.getX()-1, start.getY()+1));
@@ -65,7 +65,7 @@ public class PawnDirection extends Direction {
 			tmp = board.getSquare(start.getX()-1, start.getY()-1);
 			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "White") p.addPossibleSquare(tmp);
 			
-			// En passant
+			// En passant TODO FIX, Wrong
 			tmp = board.getSquare(start.getX() - 1, start.getY());
 			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "White"){
 				p.addPossibleSquare(board.getSquare(start.getX()-1, start.getY()-1));

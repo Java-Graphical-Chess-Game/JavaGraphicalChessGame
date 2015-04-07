@@ -4,7 +4,7 @@ package components.pieces;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import checker.GeneralMove;
+import checker.moveSystem.GeneralMove;
 import checker.moveSystem.Move;
 import components.Board;
 import components.Square;

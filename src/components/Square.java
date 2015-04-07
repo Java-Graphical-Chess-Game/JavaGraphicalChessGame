@@ -27,7 +27,7 @@ public class Square {
 	}
 	
 	public void setHighlighted(){
-		color = new Color(100, 137, 97);
+		//color = new Color(100, 137, 97);
 		highlighted = true;
 	}
 	
@@ -52,8 +52,8 @@ public class Square {
 	
 	public void setColor(){
 		if(indexX%2 == 0 ^ indexY%2 == 0)
-			color = Color.DARK_GRAY;
-		else color = Color.WHITE;
+			color = new Color(143, 4, 0);
+		else color = new Color(204, 84, 0);
 		selected = false;
 		highlighted = false;
 	}
@@ -79,6 +79,7 @@ public class Square {
 		g2.setColor(this.color);
 		g2.fill(r);
 		
+		
 		if(piece != null && piece.getImagePath() != ""){
 			Image i = Toolkit.getDefaultToolkit().getImage(piece.getImagePath());
 			
@@ -94,6 +95,10 @@ public class Square {
 //			g.drawImage(i, x+SQUARE_SIZE/2 - i.getWidth(null)/2,
 //					y+SQUARE_SIZE/2 - i.getHeight(null)/2, null);
 		
+		}
+		if(isHighlighted()){
+			g2.setColor(new Color(100, 137, 97));
+			g2.fillOval(x + SQUARE_SIZE/2 - 10, y+SQUARE_SIZE/2 - 10, 20, 20);
 		}
 	}
 

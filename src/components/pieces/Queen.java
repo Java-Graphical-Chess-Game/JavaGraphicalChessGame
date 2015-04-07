@@ -3,7 +3,7 @@ package components.pieces;
 import java.awt.Color;
 import java.io.File;
 
-import checker.GeneralMove;
+import checker.moveSystem.GeneralMove;
 import checker.moveSystem.AllDirection;
 import checker.moveSystem.MultipleStepDisplacement;
 

@@ -5,7 +5,7 @@ import java.io.File;
 
 import components.Board;
 
-import checker.GeneralMove;
+import checker.moveSystem.GeneralMove;
 import checker.moveSystem.DoubleStepDisplacement;
 import checker.moveSystem.Move;
 import checker.moveSystem.PawnDirection;
