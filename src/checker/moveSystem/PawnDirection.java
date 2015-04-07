@@ -31,49 +31,63 @@ public class PawnDirection extends Direction {
 			if(tmp.getPiece() == null) p.addPossibleSquare(tmp);
 			if(!p.hasMoved() && !p.doubleStepped()){
 				tmp = board.getSquare(start.getX(), start.getY()+2);
-				if(tmp.getPiece() == null) p.addPossibleSquare(tmp);
+				if(tmp.getPiece() == null && board.getSquare(start.getX(), start.getY()+1).getPiece() == null) p.addPossibleSquare(tmp);
 			}
-			
+
 			// Attacking
 			tmp = board.getSquare(start.getX()+1, start.getY()+1);
 			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "Black") p.addPossibleSquare(tmp);
-			
+
 			tmp = board.getSquare(start.getX()-1, start.getY()+1);
 			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "Black") p.addPossibleSquare(tmp);
-			
-			// En-Passant TODO FIX, Wrong
-			tmp = board.getSquare(start.getX() - 1, start.getY());
-			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "Black")
-				p.addPossibleSquare(board.getSquare(start.getX()-1, start.getY()+1));
-			
-			tmp = board.getSquare(start.getX() + 1, start.getY());
-			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "Black")
-				p.addPossibleSquare(board.getSquare(start.getX()+1, start.getY()+1));
+
+			// En-Passant
+			if(start.getY() == 4){
+				tmp = board.getSquare(start.getX() - 1, start.getY());
+				if(tmp.getPiece() != null && tmp.getPiece() instanceof Pawn && tmp.getPiece().getColor() == "Black"){
+					Pawn x = (Pawn)tmp.getPiece();
+					if(x.doubleStepped())
+						p.addPossibleSquare(board.getSquare(start.getX()-1, start.getY()+1));
+				}
+
+				tmp = board.getSquare(start.getX() + 1, start.getY());
+				if(tmp.getPiece() != null && tmp.getPiece() instanceof Pawn && tmp.getPiece().getColor() == "Black"){
+					Pawn x = (Pawn)tmp.getPiece();
+					if(x.doubleStepped())
+						p.addPossibleSquare(board.getSquare(start.getX()+1, start.getY()+1));
+				}
+			}
 		}
 		else if(p.getColor() == "Black"){
 			tmp = board.getSquare(start.getX(), start.getY()-1);
 			if(tmp.getPiece() == null) p.addPossibleSquare(tmp);
 			if(!p.hasMoved() && !p.doubleStepped()){
 				tmp = board.getSquare(start.getX(), start.getY()-2);
-				if(tmp.getPiece() == null) p.addPossibleSquare(tmp);
+				if(tmp.getPiece() == null && board.getSquare(start.getX(), start.getY()-1).getPiece() == null) p.addPossibleSquare(tmp);
 			}
-			
+
 			// Attacking
 			tmp = board.getSquare(start.getX()+1, start.getY()-1);
 			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "White") p.addPossibleSquare(tmp);
-			
+
 			tmp = board.getSquare(start.getX()-1, start.getY()-1);
 			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "White") p.addPossibleSquare(tmp);
-			
-			// En passant TODO FIX, Wrong
-			tmp = board.getSquare(start.getX() - 1, start.getY());
-			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "White"){
-				p.addPossibleSquare(board.getSquare(start.getX()-1, start.getY()-1));
-			}
-			
-			tmp = board.getSquare(start.getX() + 1, start.getY());
-			if(tmp.getPiece() != null && tmp.getPiece().getColor() == "White"){
-				p.addPossibleSquare(board.getSquare(start.getX()+1, start.getY()-1));
+
+			// En-passant
+			if(start.getY() == 3){
+				tmp = board.getSquare(start.getX() - 1, start.getY());
+				if(tmp.getPiece() != null && tmp.getPiece() instanceof Pawn && tmp.getPiece().getColor() == "White"){
+					Pawn x = (Pawn)tmp.getPiece();
+					if(x.doubleStepped())
+						p.addPossibleSquare(board.getSquare(start.getX()-1, start.getY()-1));
+				}
+
+				tmp = board.getSquare(start.getX() + 1, start.getY());
+				if(tmp.getPiece() != null && tmp.getPiece() instanceof Pawn && tmp.getPiece().getColor() == "White"){
+					Pawn x = (Pawn)tmp.getPiece();
+					if(x.doubleStepped())
+						p.addPossibleSquare(board.getSquare(start.getX()+1, start.getY()-1));
+				}
 			}
 		}
 	}

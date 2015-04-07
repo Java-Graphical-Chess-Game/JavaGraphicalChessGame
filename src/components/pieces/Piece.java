@@ -29,10 +29,12 @@ public abstract class Piece {
 		resetSquares();
 		generalmove.getDirection().generateValidSquares(square, board);
 		ArrayList<Square> squaresToRemove = new ArrayList<Square>();
-		for(Square s: possibleSquares){
+		
+		for(Square s: possibleSquares)
 			if(!generalmove.getDisplacement().isValidMove(new Move(square, s)))
 				squaresToRemove.add(s);
-		}
+		
+		
 		for(Square i : squaresToRemove)
 			possibleSquares.remove(i);
 		highlightSquares();

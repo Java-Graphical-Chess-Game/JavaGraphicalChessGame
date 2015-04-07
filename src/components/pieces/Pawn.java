@@ -29,7 +29,7 @@ public class Pawn extends Piece {
 	}
 	public void setDoubleStepped(){ 
 		doubleStepped = true;
-		generalmove = new GeneralMove(new PawnDirection(), new SingleStepDisplacement());
+		//setMoved();
 	}
 	
 	public boolean hasMoved(){ return moved; }
@@ -39,7 +39,7 @@ public class Pawn extends Piece {
 	public void executeMove(Move move, Board board) {
 		super.executeMove(move, board);
 		setMoved();
-		if(generalmove.getDisplacement().isValidMove(move)) doubleStepped = true;
+		if(new DoubleStepDisplacement().isValidMove(move)) setDoubleStepped();
 	}
 	
 }
