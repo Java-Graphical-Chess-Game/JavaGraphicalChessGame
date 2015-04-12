@@ -4,7 +4,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JPanel;
@@ -23,7 +22,7 @@ public class GraphicalBoard  extends JPanel implements MouseListener{
 	private Square selectedSquare = Square.INEXISTANT;
 
 	public GraphicalBoard(Board board){
-		super(new GridLayout(10, 10));
+		//super(new GridLayout(10, 10)); // Hell.
 		this.board = board;
 		setPreferredSize(getPreferredSize());
 		addMouseListener(this);
@@ -72,8 +71,14 @@ public class GraphicalBoard  extends JPanel implements MouseListener{
 			return;
 		}
 
-		if(selected.getPiece() == null) return; //no piece here
+		if(selected.getPiece() == null) return; // there is no piece in here.
+		
+		if(selected.getPiece() != null 
+				&& selected.getPiece().getColor() != board.getCurrentColor())
+			return; //no piece here
+		
 		redraw();
+		
 		if(!selected.isSelected()){
 			selected.setSelected();
 			existsSelectedSquare = true;

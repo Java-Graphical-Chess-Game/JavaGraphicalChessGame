@@ -12,8 +12,8 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextPane;
 import javax.swing.JToolBar;
 
 public class ChessFrame extends JFrame {
@@ -21,13 +21,13 @@ public class ChessFrame extends JFrame {
 	private static final long serialVersionUID = 591882616190547773L;
 
 	private Action newGame, saveGame, loadGame, abandonGame, undo, redo;
-	private Game game;
+	private Game game; JLabel tp;
 	
 	public ChessFrame() throws HeadlessException {}
 
 	public ChessFrame(GraphicalBoard guiBoard) {
 		setTitle("Chess Game");
-		setSize(450, 450);
+		setSize(500, 500);
 		setVisible(true);
 		setResizable(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -134,11 +134,10 @@ public class ChessFrame extends JFrame {
 		add(tools, BorderLayout.NORTH);
 		add(constraint, BorderLayout.CENTER);
 		
-		setMinimumSize(new Dimension(450, 450));
+		setMinimumSize(new Dimension(500, 500));
 		
 		JPanel statusBar = new JPanel();
-		JTextPane tp = new JTextPane();
-		tp.setText("Welcome to Chess");
+		tp = new JLabel("Welcome To Chess");
 		statusBar.setSize(new Dimension(getWidth(), 230));
 		statusBar.add(tp);
 		
@@ -146,6 +145,13 @@ public class ChessFrame extends JFrame {
 		
 		pack();
 		
+	}
+	
+	public void updateStatus(){
+		String status = game.getTurnColor() + "'s Turn";
+		if(game.getGameState() != "None")
+			status += "   ---   " + game.getGameState();
+		tp.setText(status);
 	}
 
 }

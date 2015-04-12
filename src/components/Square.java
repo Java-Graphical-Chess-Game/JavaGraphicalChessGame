@@ -109,11 +109,19 @@ public class Square {
 	public Piece deletePiece() {
 		Piece p = this.piece;
 		this.piece = null;
+		p.nullifySquare();
 		return p;
 	}
 
 	protected void insertPiece(Piece moved) {
 		this.piece = moved;
+		piece.setSquare(this);
 	}
 
+	@Override
+	public String toString() {
+		return "("+indexX+", "+indexY+")";
+	}
+	
+	
 }

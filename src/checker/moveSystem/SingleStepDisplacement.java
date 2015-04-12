@@ -9,4 +9,9 @@ public class SingleStepDisplacement implements Displacement {
 					&& Math.abs(m.getEnd().getY()-m.getStart().getY()) <= 1;
 		}
 
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof SingleStepDisplacement;
+	}
+	
 }

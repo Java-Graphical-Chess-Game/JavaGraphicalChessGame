@@ -9,6 +9,9 @@ import checker.moveSystem.StraightDirection;
 
 public class Rook extends Piece {
 
+	private boolean moved = false;
+	private boolean castled = false;
+	
 	public Rook(Color c) {
 		super(c);
 		String filename = (color.equals(Color.BLACK))? "brook.png":"wrook.png";

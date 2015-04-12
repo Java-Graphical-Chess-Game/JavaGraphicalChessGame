@@ -1,10 +1,13 @@
 package checker;
 
+import java.util.ArrayList;
+
 import components.Board;
 import components.Square;
 
 public class Motion {
-	public static void fetchUpSquares(Square start, Board board){
+	public static ArrayList<Square> fetchUpSquares(Square start, Board board){
+		ArrayList<Square> ss = new ArrayList<Square>();
 		int startX=start.getX();
 		int startY=start.getY();
 		int tmpY = startY - 1;
@@ -17,19 +20,20 @@ public class Motion {
 				if(s.getPiece().getColor() == currentColor)
 					break;
 				else{
-					start.getPiece().addPossibleSquare(s);
+					ss.add(s);
 					break;
 				} 
 			}
 			else{
-				start.getPiece().addPossibleSquare(s);
+				ss.add(s);
 			}
 		}
-
+		return ss;
 	}
 
 
-	public static void fetchDownSquares(Square start, Board board){
+	public static ArrayList<Square> fetchDownSquares(Square start, Board board){
+		ArrayList<Square> ss = new ArrayList<Square>();
 		int startX=start.getX();
 		int startY=start.getY();
 		int tmpY = startY + 1;
@@ -42,19 +46,20 @@ public class Motion {
 				if(s.getPiece().getColor() == currentColor)
 						break;
 				else{
-					start.getPiece().addPossibleSquare(s);
+					ss.add(s);
 					break;
 				} 
 			}
 			else{
-				start.getPiece().addPossibleSquare(s);
+				ss.add(s);
 			}
 		}
-
+		return ss;
 	}
 
 
-	public static void fetchLeftSquares(Square start, Board board){
+	public static ArrayList<Square> fetchLeftSquares(Square start, Board board){
+		ArrayList<Square> ss = new ArrayList<Square>();
 		int startX=start.getX();
 		int startY=start.getY();
 		int tmpX = startX - 1;
@@ -67,21 +72,21 @@ public class Motion {
 				if(s.getPiece().getColor() == currentColor)
 					break;
 				else{
-					start.getPiece().addPossibleSquare(s);
+					ss.add(s);
 					break;
 				} 
 			}
 			else{
-				start.getPiece().addPossibleSquare(s);
+				ss.add(s);
 			}
 		}
-
-
+		return ss;
 	}
 
 
 
-	public static void fetchRightSquares(Square start, Board board){
+	public static ArrayList<Square> fetchRightSquares(Square start, Board board){
+		ArrayList<Square> ss = new ArrayList<Square>();
 		int startX=start.getX();
 		int startY=start.getY();
 		int tmpX = startX + 1;
@@ -94,20 +99,20 @@ public class Motion {
 				if(s.getPiece().getColor() == currentColor)
 					break;
 				else{
-					start.getPiece().addPossibleSquare(s);
+					ss.add(s);
 					break;
 				} 
 			}
 			else{
-				start.getPiece().addPossibleSquare(s);
+				ss.add(s);
 			}
 		}
-
-
+		return ss;
 	}
 
 
-	public static void fetchUpLeftSquares(Square start, Board board){
+	public static ArrayList<Square> fetchUpLeftSquares(Square start, Board board){
+		ArrayList<Square> ss = new ArrayList<Square>();
 		int startX=start.getX();
 		int startY=start.getY();
 		int tmpX = startX - 1, tmpY = startY - 1;
@@ -120,21 +125,22 @@ public class Motion {
 				if(s.getPiece().getColor() == currentColor)
 					break;
 				else{
-					start.getPiece().addPossibleSquare(s);
+					ss.add(s);
 					break;
 				} 
 			}
 			else{
-				start.getPiece().addPossibleSquare(s);
+				ss.add(s);
 			}
 		}
-
+		return ss;
 	}
 
 
 
 
-	public static void fetchUpRightSquares(Square start, Board board){
+	public static ArrayList<Square> fetchUpRightSquares(Square start, Board board){
+		ArrayList<Square> ss = new ArrayList<Square>();
 		int startX=start.getX();
 		int startY=start.getY();
 		int tmpX = startX + 1, tmpY = startY - 1;
@@ -147,21 +153,22 @@ public class Motion {
 				if(s.getPiece().getColor() == currentColor)
 					break;
 				else{
-					start.getPiece().addPossibleSquare(s);
+					ss.add(s);
 					break;
 				} 
 			}
 			else{
-				start.getPiece().addPossibleSquare(s);
+				ss.add(s);
 			}
 		}
-
+		return ss;
 	}
 
 
 
 
-	public static void fetchDownLeftSquares(Square start, Board board){
+	public static ArrayList<Square> fetchDownLeftSquares(Square start, Board board){
+		ArrayList<Square> ss = new ArrayList<Square>();
 		int startX=start.getX();
 		int startY=start.getY();
 		int tmpX = startX - 1, tmpY = startY + 1;
@@ -174,19 +181,20 @@ public class Motion {
 				if(s.getPiece().getColor() == currentColor)
 					break;
 				else{
-					start.getPiece().addPossibleSquare(s);
+					ss.add(s);
 					break;
 				} 
 			}
 			else{
-				start.getPiece().addPossibleSquare(s);
+				ss.add(s);
 			}
 		}
-
+		return ss;
 	}
 
 
-	public static void fetchDownRightSquares(Square start, Board board){
+	public static ArrayList<Square> fetchDownRightSquares(Square start, Board board){
+		ArrayList<Square> ss = new ArrayList<Square>();
 		int startX=start.getX();
 		int startY=start.getY();
 		int tmpX = startX + 1, tmpY = startY + 1;
@@ -199,15 +207,15 @@ public class Motion {
 				if(s.getPiece().getColor() == currentColor)
 					break;
 				else{
-					start.getPiece().addPossibleSquare(s);
+					ss.add(s);
 					break;
 				} 
 			}
 			else{
-				start.getPiece().addPossibleSquare(s);
+				ss.add(s);
 			}
 		}
-
+		return ss;
 	}
 
 }

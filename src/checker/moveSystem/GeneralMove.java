@@ -13,9 +13,20 @@ public class GeneralMove{
 	}
 
 	public boolean isValidMove(Move m, Color c){
-		return displacement.isValidMove(m) && direction.isValidMove(m, c);//chain of command design patterns
+		return displacement.isValidMove(m) && direction.isValidMove(m, c);
 	}
 
 	public Displacement getDisplacement() { return displacement; }
 	public Direction getDirection() { return direction; }
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof GeneralMove))
+			return false;
+		GeneralMove tmp = (GeneralMove)obj;
+		
+		return tmp.direction.equals(direction) && tmp.displacement.equals(displacement);
+	}
+	
 }

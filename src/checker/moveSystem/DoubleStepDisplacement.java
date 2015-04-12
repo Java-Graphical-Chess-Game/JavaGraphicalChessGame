@@ -9,4 +9,10 @@ public class DoubleStepDisplacement implements Displacement {
 
 	}
 
+	
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof DoubleStepDisplacement;
+	}
+	
 }

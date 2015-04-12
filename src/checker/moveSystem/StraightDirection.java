@@ -1,6 +1,7 @@
 package checker.moveSystem;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import checker.Motion;
 
@@ -19,11 +20,19 @@ public class StraightDirection extends Direction {
 	}
 	
 	@Override
-    public void generateValidSquares(Square start, Board board) {
-        Motion.fetchUpSquares(start, board);
-        Motion.fetchDownSquares(start, board);
-        Motion.fetchLeftSquares(start, board);
-        Motion.fetchRightSquares(start, board);
+    public ArrayList<Square> generateValidSquares(Square start, Board board) {
+		ArrayList<Square> ss = new ArrayList<Square>();
+        ss.addAll(Motion.fetchUpSquares(start, board));
+        ss.addAll(Motion.fetchDownSquares(start, board));
+        ss.addAll(Motion.fetchLeftSquares(start, board));
+        ss.addAll(Motion.fetchRightSquares(start, board));
+        return ss;
     }
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof StraightDirection;
+	}
 
 }

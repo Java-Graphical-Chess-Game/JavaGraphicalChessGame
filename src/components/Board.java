@@ -3,8 +3,6 @@ package components;
 import game.Game;
 import gui.GraphicalBoard;
 
-import java.awt.Color;
-
 import components.pieces.Piece;
 
 import checker.moveSystem.Move;
@@ -32,9 +30,8 @@ public class Board {
 		}
 	}
 
-	public Color getCurrentColor() {
-		// TODO Let the board know who's playing (which color)
-		return null;
+	public String getCurrentColor() {
+		return game.getTurnColor();
 	}
 
 	public void resetSquares() {
@@ -46,17 +43,47 @@ public class Board {
 
 	public void executeMove(Move move) {
 		if(move == null) return;
-		Piece moved = move.getStart().getPiece();
-		move.getStart().deletePiece();
-		if(move.getEnd() != null)
+		Piece moved = move.getStart().deletePiece();
+		if(move.getEnd().getPiece() != null)
 			moved.setVictim(move.getEnd().deletePiece());
 		move.getEnd().insertPiece(moved);
+		game.switchTurn();
+		game.updateGameState();
 	}
-
 	
-	// for debugging
-	public void redraw(){
-		guiBoard.redraw();
+	public boolean attemptMove(Move move) {
+		if(move == null) return false;
+		Piece moved = move.getStart().deletePiece();
+		Piece attacked = null;
+		if(move.getEnd().getPiece() != null){
+			attacked = move.getEnd().getPiece();
+			moved.setVictim(attacked);
+		}
+		move.getEnd().insertPiece(moved);
+		
+		Player current;
+		if(game.getTurnColor() == "White") current = game.getWPlayer();
+		else current = game.getBPlayer();
+		
+		boolean willSolve;
+		
+		if(game.requestGameState(current).toString().contains("Check")) willSolve = false;
+		else willSolve = true;
+		
+		move.getStart().insertPiece(move.getEnd().deletePiece());
+		if(attacked != null) move.getEnd().insertPiece(attacked);
+		
+		return willSolve;
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+

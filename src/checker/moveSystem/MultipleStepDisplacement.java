@@ -7,4 +7,9 @@ public class MultipleStepDisplacement implements Displacement {
 		return true;
 	}
 
+	
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof MultipleStepDisplacement;
+	}
 }
