@@ -12,7 +12,8 @@ public class GameStateChecker {
 	public GameStateChecker(Game game){ this.game = game; }
 
 	public GameState checkGameState(Player currentTeam) {
-		return currentTeam.getSet().getKing().isInDanger(game.getBoard());
+		GameState gs = currentTeam.getSet().getKing().isInDanger(game.getBoard());
+		return gs;
 	}
 	
 	

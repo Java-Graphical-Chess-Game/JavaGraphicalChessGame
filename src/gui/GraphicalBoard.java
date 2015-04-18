@@ -73,8 +73,7 @@ public class GraphicalBoard  extends JPanel implements MouseListener{
 
 		if(selected.getPiece() == null) return; // there is no piece in here.
 		
-		if(selected.getPiece() != null 
-				&& selected.getPiece().getColor() != board.getCurrentColor())
+		if(selected.getPiece().getColor() != board.getCurrentColor())
 			return; //no piece here
 		
 		redraw();

@@ -98,8 +98,6 @@ public class Game {
 		Player currentTeam = isWhiteTurn? wPlayer:bPlayer;
 		GameState gs = requestGameState(currentTeam);
 		
-		
-		
 		setGameState(gs);
 		chessFrame.updateStatus();
 		

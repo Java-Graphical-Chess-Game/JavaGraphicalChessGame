@@ -19,9 +19,8 @@ public class SpecialMoveGenerator {
 		isSet = false;
 	}
 
-	public void alter(ArrayList<Square> possibleSquares, Piece piece) {
-
-
+	public void alter(ArrayList<Square> possibleSquares, Piece piece){
+		
 		if(tmp.isEmpty() && !isSet){
 			tmp.addAll(possibleSquares);
 			isSet = true;
@@ -43,6 +42,8 @@ public class SpecialMoveGenerator {
 	}
 
 	public boolean isSet(){ return isSet; }
+	public void set(){ isSet = true; System.out.println("SET");}
+	public void unset(){ isSet = false; System.out.println("UNSET");}
 
 	private boolean attemptMoveTo(Square s, Piece piece) {
 		return board.attemptMove(new Move(piece.getSquare(), s));

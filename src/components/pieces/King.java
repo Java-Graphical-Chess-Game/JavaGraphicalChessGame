@@ -48,7 +48,7 @@ public class King extends Piece {
 		for(Direction d : directions)
 			for(Displacement dis : displacements){
 				gm = new GeneralMove(d, dis);
-				temp = askForSquares(board, gm, temp, false); // Attackers are too lazy to attack the king
+				temp = askForSquares(board, gm, temp, false, false); // Attackers are too lazy to attack the king
 												 			  // So the king will attack them instead
 				for(Square tmp : temp){
 					if(tmp.getPiece() != null
@@ -63,8 +63,6 @@ public class King extends Piece {
 			gs = GameState.CHECK_BLACK;
 		else
 			gs = GameState.CHECK_WHITE;
-
-
 
 		threatSquares.clear();
 		return gs;

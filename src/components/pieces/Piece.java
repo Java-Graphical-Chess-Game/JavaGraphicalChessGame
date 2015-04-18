@@ -31,11 +31,12 @@ public abstract class Piece {
 	}
 
 	public void askForSquares(Board board, GeneralMove gm, boolean graphicalWork){
-		askForSquares(board, generalmove, possibleSquares, graphicalWork);
+		askForSquares(board, generalmove, possibleSquares, graphicalWork, true);
 	}
 	
-	public ArrayList<Square> askForSquares(Board board, GeneralMove gm, ArrayList<Square> list, boolean graphicalWork){
-		resetSquares(); // reset possible squares for this piece.
+	public ArrayList<Square> askForSquares(Board board, GeneralMove gm,
+			ArrayList<Square> list, boolean graphicalWork, boolean alter){
+		resetSquares(); // Reset possible squares for this piece.
 		list = gm.getDirection().generateValidSquares(square, board);
 		ArrayList<Square> squaresToRemove = new ArrayList<Square>();
 
@@ -46,10 +47,8 @@ public abstract class Piece {
 		list.removeAll(squaresToRemove);
 
 		SpecialMoveGenerator smg = board.getGame().getSMG();
-		if(board.getGame().getGameState().contains("Check") && !smg.isSet()){
-			
+		if(alter)			
 			smg.alter(list, this);
-		}
 
 		if(graphicalWork){
 			possibleSquares = list;
