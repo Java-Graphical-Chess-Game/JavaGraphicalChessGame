@@ -1,6 +1,5 @@
 package gui;
 
-
 import game.Game;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -126,6 +125,7 @@ public class ChessFrame extends JFrame {
 				updateStatus();
 				ChessFrame.this.game.requestVPRedraw();
 				ChessFrame.this.guiBoard.redraw();
+				game.updateGameState();
 				if(game.isUndoEmpty())
 					undo.setEnabled(false);
 			}
