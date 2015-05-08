@@ -9,6 +9,11 @@ import checker.moveSystem.MultipleStepDisplacement;
 
 public class Queen extends Piece {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Queen(Color c) {
 		super(c);
 		String filename = (color.equals(Color.BLACK))? "bqueen.png":"wqueen.png";

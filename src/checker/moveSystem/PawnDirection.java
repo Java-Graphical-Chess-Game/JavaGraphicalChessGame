@@ -9,6 +9,12 @@ import components.pieces.Pawn;
 
 public class PawnDirection extends Direction {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	@Override
 	public boolean isValidMove(Move m, Color c) {
 		int dy = m.getEnd().getY() - m.getStart().getY();

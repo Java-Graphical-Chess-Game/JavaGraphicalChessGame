@@ -1,6 +1,8 @@
 package game;
 
-public enum GameState {
+import java.io.Serializable;
+
+public enum GameState implements Serializable{
 	NONE,
 	DRAW,
 	CHECK_WHITE,

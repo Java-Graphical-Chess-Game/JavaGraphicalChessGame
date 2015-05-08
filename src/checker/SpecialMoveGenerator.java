@@ -1,5 +1,6 @@
 package checker;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import checker.moveSystem.Move;
@@ -7,8 +8,12 @@ import components.Board;
 import components.Square;
 import components.pieces.Piece;
 
-public class SpecialMoveGenerator {
+public class SpecialMoveGenerator implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Board board;
 	private ArrayList<Square> tmp;
 	private boolean isSet;

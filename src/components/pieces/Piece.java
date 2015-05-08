@@ -2,6 +2,7 @@ package components.pieces;
 
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import checker.SpecialMoveGenerator;
@@ -10,8 +11,12 @@ import checker.moveSystem.Move;
 import components.Board;
 import components.Square;
 
-public abstract class Piece {
+public abstract class Piece implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected Color color;
 	protected ArrayList<Square> possibleSquares;
 	protected Square square;
@@ -98,6 +103,25 @@ public abstract class Piece {
 
 	public void setVictim(Piece victim) { this.victim = victim; }
 
+	
+	public Piece clone(){
+		Piece p = null;
+		try {
+			p = this.getClass().newInstance();
+			p.color = color;
+			p.generalmove = generalmove;
+			p.imagePath = imagePath;
+			p.possibleSquares = possibleSquares;
+			p.square = square;
+			p.victim = victim;
+		} 
+		catch (InstantiationException e) {} 
+		catch (IllegalAccessException e) {}
+		
+
+		
+		return p;
+	}
 
 
 	public void nullifySquare() {

@@ -13,6 +13,10 @@ import checker.moveSystem.SingleStepDisplacement;
 
 public class Pawn extends Piece {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private boolean moved = false;
 	private boolean doubleStepped = false;
 	

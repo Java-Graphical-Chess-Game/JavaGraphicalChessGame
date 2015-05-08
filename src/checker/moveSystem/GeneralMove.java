@@ -1,8 +1,13 @@
 package checker.moveSystem;
 
 import java.awt.Color;
+import java.io.Serializable;
 
-public class GeneralMove{
+public class GeneralMove implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Displacement displacement;
 	private Direction direction;
 	

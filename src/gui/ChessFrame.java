@@ -2,36 +2,51 @@ package gui;
 
 
 import game.Game;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.io.File;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
+import checker.moveSystem.Move;
+import components.pieces.Piece;
+
 public class ChessFrame extends JFrame {
 
-	private static final long serialVersionUID = 591882616190547773L;
-
-	private Action newGame, saveGame, loadGame, abandonGame, undo, redo;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 773148790671349216L;
+	private Action newGame, saveGame, loadGame, abandonGame, undo;
+	private VictimPanel vp;
+	private GraphicalBoard guiBoard;
+	
 	private Game game; JLabel tp;
 	
 	public ChessFrame() throws HeadlessException {}
 
 	public ChessFrame(GraphicalBoard guiBoard) {
+		this.guiBoard = guiBoard;
 		setTitle("Chess Game");
-		setSize(500, 500);
+		setSize(600, 600);
 		setVisible(true);
 		setResizable(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		vp = new VictimPanel();
+		//vp.redraw();
 		
+		
+		add(vp, BorderLayout.EAST);
 		guiBoard.setSize(guiBoard.getPreferredSize());
 		guiBoard.paintComponent(getGraphics());
 		this.game = guiBoard.getBoard().getGame();
@@ -58,7 +73,7 @@ public class ChessFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				game.save();
 			}
 			
 		};
@@ -68,6 +83,7 @@ public class ChessFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				game.load();
 			}
 			
 		};
@@ -77,15 +93,21 @@ public class ChessFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				Dialog d = new Dialog(null, "Resign Game", null, null);
-//				d.setLayout(getLayout());
-//				JLabel j = new JLabel("Would you like to resign the current game?");
-//				JButton yes = new JButton("Yes");
-//				JButton no = new JButton("No");
-//				d.add(j);
-//				d.add(yes);
-//				d.add(no);
-//				d.setVisible(true);
+				//JOptionPane.showMessageDialog(null, this, "Do you want to keep my ass for the night?", JFrame.EXIT_ON_CLOSE);
+				//JOptionPane.showConfirmDialog(null, this, "Do you want to keep my ass for the night?", JFrame.EXIT_ON_CLOSE);
+				int x = JOptionPane.showConfirmDialog(null, "Do you want to resign?", "Resign?", JOptionPane.YES_NO_OPTION);
+				
+				switch (x) {
+				case JOptionPane.YES_OPTION:
+					System.exit(0);
+					break;
+				case JOptionPane.NO_OPTION:
+					// ok...
+					break;
+				default:
+					// doesn't do shit
+					break;
+				}
 			}
 			
 		};
@@ -95,32 +117,33 @@ public class ChessFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Move m = game.popUndo();
+				m.reverse();
+				if(m.getVictim() != null){
+					vp.removeLastPiece();
+				}
+				game.switchTurn();
+				updateStatus();
+				ChessFrame.this.game.requestVPRedraw();
+				ChessFrame.this.guiBoard.redraw();
+				if(game.isUndoEmpty())
+					undo.setEnabled(false);
 			}
 			
 		};
 		
-		redo 		= new AbstractAction("Redo"){
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			}
-			
-		};
 				
 		newGame 	    .setEnabled(true);
-		saveGame 	    .setEnabled(false);
+		saveGame 	    .setEnabled(true);
 		loadGame 	    .setEnabled(true);
 		abandonGame     .setEnabled(true);
 		undo     		.setEnabled(false);
-		redo 			.setEnabled(false);
 		
 		JButton newButton 	  = new JButton(newGame);
 		JButton saveButton 	  = new JButton(saveGame);
 		JButton loadButton 	  = new JButton(loadGame);
 		JButton abandonButton = new JButton(abandonGame);
 		JButton undoButton    = new JButton(undo);
-		JButton redoButton    = new JButton(redo);
 		
 		toolbar.add(newButton);
 		toolbar.add(saveButton);
@@ -129,12 +152,11 @@ public class ChessFrame extends JFrame {
 		toolbar.add(abandonButton);
 		toolbar.addSeparator();
 		toolbar.add(undoButton);
-		toolbar.add(redoButton);
 		tools.add(toolbar);
 		add(tools, BorderLayout.NORTH);
 		add(constraint, BorderLayout.CENTER);
 		
-		setMinimumSize(new Dimension(500, 500));
+		setMinimumSize(new Dimension(600, 600));
 		
 		JPanel statusBar = new JPanel();
 		tp = new JLabel("Welcome To Chess");
@@ -142,6 +164,9 @@ public class ChessFrame extends JFrame {
 		statusBar.add(tp);
 		
 		add(statusBar, BorderLayout.SOUTH);
+		
+		this.setIconImage(Toolkit.getDefaultToolkit()
+				.getImage("icons" + File.separator + "wking.png"));
 		
 		pack();
 		
@@ -153,5 +178,28 @@ public class ChessFrame extends JFrame {
 			status += "   ---   " + game.getGameState();
 		tp.setText(status);
 	}
+	
+	public void setUndoEnable(boolean enable){
+		undo.setEnabled(enable);
+	}
+	public void setRedoEnable(boolean enable){
+		//redo.setEnabled(enable);
+	}
+	public boolean getUndoState(){
+		return undo.isEnabled();
+	}
+	public boolean getRedoState(){
+		return false;
+		//return redo.isEnabled();
+	}
+	
+	public void requestAddVictim(Piece p){
+		vp.addVictim(p);
+	}
+
+	public VictimPanel getVP() {
+		return vp;
+	}
+	
 
 }

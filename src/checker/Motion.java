@@ -1,11 +1,18 @@
 package checker;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import components.Board;
 import components.Square;
 
-public class Motion {
+public class Motion implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	public static ArrayList<Square> fetchUpSquares(Square start, Board board){
 		ArrayList<Square> ss = new ArrayList<Square>();
 		int startX=start.getX();

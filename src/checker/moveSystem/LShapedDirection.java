@@ -8,6 +8,12 @@ import components.Square;
 
 public class LShapedDirection extends Direction {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	@Override
 	public boolean isValidMove(Move m ,Color c) {
 		int xStart = m.getStart().getX();

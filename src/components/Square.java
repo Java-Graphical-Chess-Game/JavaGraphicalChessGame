@@ -6,12 +6,17 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.Rectangle2D;
 import java.awt.Toolkit;
+import java.io.Serializable;
 
 import components.pieces.Piece;
 
 
-public class Square {
+public class Square implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public final static Square INEXISTANT = new Square(-1, -1, -1, -1);
 	public static int SQUARE_SIZE = 10;
 
@@ -78,7 +83,6 @@ public class Square {
 		Rectangle2D r = new Rectangle2D.Double(x, y, SQUARE_SIZE, SQUARE_SIZE);
 		g2.setColor(this.color);
 		g2.fill(r);
-		
 		
 		if(piece != null && piece.getImagePath() != ""){
 			Image i = Toolkit.getDefaultToolkit().getImage(piece.getImagePath());

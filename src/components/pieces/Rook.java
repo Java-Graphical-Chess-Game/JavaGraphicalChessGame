@@ -9,6 +9,10 @@ import checker.moveSystem.StraightDirection;
 
 public class Rook extends Piece {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private boolean moved = false;
 	private boolean castled = false;
 	

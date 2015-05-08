@@ -9,6 +9,11 @@ import checker.moveSystem.MultipleStepDisplacement;
 
 public class Bishop extends Piece {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Bishop(Color c) {
 		super(c);
 		String filename = (color.equals(Color.BLACK))? "bbishop.png":"wbishop.png";

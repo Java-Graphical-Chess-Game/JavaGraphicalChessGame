@@ -1,9 +1,19 @@
 package checker.moveSystem;
 
-import components.Square;
+import java.io.Serializable;
 
-public class Move {
+import components.Square;
+import components.pieces.Piece;
+
+public class Move implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private Square start, end;
+
+	private Piece victim;
 
 	
 	public Move(Square start, Square end){
@@ -13,6 +23,9 @@ public class Move {
 		 this.end=end;
 			
 	}
+	
+	public Piece getVictim(){ return victim; }
+	public void setVictim(Piece victim) { this.victim = victim; };
 	
 	
 	/**
@@ -27,6 +40,16 @@ public class Move {
 	 */
 	public Square getEnd() {
 		return end;
+	}
+
+	public void reverse() {
+		this.start.setPiece(this.end.deletePiece());
+		this.start.getPiece().setSquare(start);
+		if(this.victim != null){
+			this.end.setPiece(victim);
+			victim.setSquare(this.end);
+		}
+		
 	}
 
 }

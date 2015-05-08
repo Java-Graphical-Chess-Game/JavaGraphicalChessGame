@@ -12,6 +12,10 @@ import checker.moveSystem.*;
 public class King extends Piece {
 	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private boolean moved = false; //TODO 
 	private boolean castled = false; //TODO
 	

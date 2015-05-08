@@ -1,11 +1,16 @@
 package components;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.HashMap;
 import components.pieces.*;
 
-public class Set {
+public class Set implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Color color;
 	private HashMap<Piece, Square> piecesPositions;
 	private Board board;

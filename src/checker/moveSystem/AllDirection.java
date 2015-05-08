@@ -8,6 +8,11 @@ import components.Square;
 
 public class AllDirection extends Direction {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public boolean isValidMove(Move m, Color c) {
 		return new DiagonalDirection().isValidMove(m, c) && new StraightDirection().isValidMove(m, c);
