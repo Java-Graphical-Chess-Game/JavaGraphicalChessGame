@@ -23,7 +23,19 @@ public abstract class Piece implements Serializable{
 	protected String imagePath = "";
 	protected GeneralMove generalmove;
 	protected Piece victim;
+    protected int numberOfMoves=-1;
+    
+    
+	public int getNumberOfMoves() {
+		return numberOfMoves;
+	}
 
+    public void countMove(){
+    	this.numberOfMoves=this.numberOfMoves+1;
+    }
+    public void recountMove(){
+    	this.numberOfMoves=this.numberOfMoves-1;
+    }
 	public Piece(Color c){
 		this.color = c;
 		possibleSquares = new ArrayList<Square>();
@@ -99,8 +111,7 @@ public abstract class Piece implements Serializable{
 
 	}
 
-
-
+ 
 	public void setVictim(Piece victim) { this.victim = victim; }
 
 	
@@ -114,6 +125,7 @@ public abstract class Piece implements Serializable{
 			p.possibleSquares = possibleSquares;
 			p.square = square;
 			p.victim = victim;
+			p.numberOfMoves=numberOfMoves;
 		} 
 		catch (InstantiationException e) {} 
 		catch (IllegalAccessException e) {}

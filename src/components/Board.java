@@ -5,9 +5,8 @@ import java.util.ArrayList;
 
 import game.Game;
 import gui.GraphicalBoard;
-
+import components.pieces.Pawn;
 import components.pieces.Piece;
-
 import checker.moveSystem.Move;
 
 public class Board implements Serializable{
@@ -57,6 +56,8 @@ public class Board implements Serializable{
 
 	public void executeMove(Move move) {
 		if(move == null) return;
+//		move.getStart().getPiece().countMove();
+//		System.out.println("First number:"+move.getStart().getPiece().getNumberOfMoves());
 		Piece moved = move.getStart().deletePiece();
 		if(move.getEnd().getPiece() != null)
 		{
@@ -78,6 +79,7 @@ public class Board implements Serializable{
 	public boolean attemptMove(Move move) {
 
 		if(move == null) return false;
+		
 		Piece moved = move.getStart().deletePiece();
 		Piece attacked = null;
 		if(move.getEnd().getPiece() != null){

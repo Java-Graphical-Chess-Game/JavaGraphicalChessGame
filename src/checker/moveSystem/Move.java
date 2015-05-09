@@ -12,15 +12,18 @@ public class Move implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private Square start, end;
-
+    private Piece current;
 	private Piece victim;
-
+ public Piece getCurrentPiece(){
+	 return this.current;
+ }
 	
 	public Move(Square start, Square end){
 		if (start.equals(end))
 			return;
 		 this.start=start;
 		 this.end=end;
+		 this.current=start.getPiece();
 			
 	}
 	

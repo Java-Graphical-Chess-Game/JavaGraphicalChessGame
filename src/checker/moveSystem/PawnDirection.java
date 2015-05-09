@@ -32,11 +32,12 @@ public class PawnDirection extends Direction {
 	@Override
 	public ArrayList<Square> generateValidSquares(Square start, Board board) {
 		Pawn p;
-		
+	
 		ArrayList<Square> ss = new ArrayList<Square>();
 		
 		if(start.getPiece() instanceof Pawn)
 			p = (Pawn)start.getPiece();
+		
 		else{
 			if(start.getPiece().getColor() == "White")
 				ss.addAll(checkForAttackPossibility("White", start, board));
@@ -47,11 +48,15 @@ public class PawnDirection extends Direction {
 		
 		Square tmp;
 
-
+        
 		if(p.getColor() == "White"){
 			tmp = board.getSquare(start.getX(), start.getY()+1);
 			if(tmp.getPiece() == null) ss.add(tmp);
-			if(!p.hasMoved() && !p.doubleStepped()){
+			if(p.getNumberOfMoves()==-1)
+			p.countMove();
+			System.out.println("First number:"+p.getNumberOfMoves());
+			if(p.getNumberOfMoves()==0){
+				System.out.println("Has moved");
 				tmp = board.getSquare(start.getX(), start.getY()+2);
 				if(tmp.getPiece() == null && board.getSquare(start.getX(), start.getY()+1).getPiece() == null) ss.add(tmp);
 			}

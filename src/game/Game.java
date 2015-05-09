@@ -121,7 +121,10 @@ public class Game implements Serializable{
 		redo.push(m);
 	}
 	public Move popUndo(){
+	undo.lastElement().getCurrentPiece().recountMove();
+	System.out.println("Second number:"+undo.lastElement().getCurrentPiece().getNumberOfMoves());
 		return undo.pop();
+		
 	}
 	public Move popRedo(){
 		return redo.pop();

@@ -13,23 +13,22 @@ import checker.moveSystem.SingleStepDisplacement;
 
 public class Pawn extends Piece {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private boolean moved = false;
 	private boolean doubleStepped = false;
 	
 	public Pawn(Color c) {
 		super(c);
-		String filename = (color.equals(Color.BLACK))? "bpawn.png":"wpawn.png";
+	    String filename = (color.equals(Color.BLACK))? "bpawn.png":"wpawn.png";
 		imagePath = "icons" + File.separator + filename;
 		generalmove = new GeneralMove(new PawnDirection(), new DoubleStepDisplacement());
 	}
 
 	public void setMoved(){ 
-		moved = true;
-		generalmove = new GeneralMove(new PawnDirection(), new SingleStepDisplacement());
+		System.out.println("moved");
+		if(this.getNumberOfMoves()==0)
+			moved=false;
+		else {moved = true;
+		generalmove = new GeneralMove(new PawnDirection(), new SingleStepDisplacement());}
 	}
 	public void setDoubleStepped(){ 
 		doubleStepped = true;
@@ -41,9 +40,12 @@ public class Pawn extends Piece {
 	
 	@Override
 	public void executeMove(Move move, Board board) {
+		
 		super.executeMove(move, board);
-		setMoved();
-		if(new DoubleStepDisplacement().isValidMove(move)) setDoubleStepped();
+		this.countMove();
+		//setMoved();
+		
+		//if(new DoubleStepDisplacement().isValidMove(move)) setDoubleStepped();
 	}
 	
 }

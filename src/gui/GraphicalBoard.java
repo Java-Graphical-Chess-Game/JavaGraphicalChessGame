@@ -13,9 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import checker.moveSystem.Move;
-
 import components.Board;
 import components.Square;
+import components.pieces.Pawn;
 
 public class GraphicalBoard  extends JPanel implements MouseListener, Serializable{
 
@@ -68,6 +68,7 @@ public class GraphicalBoard  extends JPanel implements MouseListener, Serializab
 			if(selected.isHighlighted()){ // is a valid move
 				Move m;
 				if((m = new Move(selectedSquare, selected))!=null){
+					
 					selectedSquare.getPiece().executeMove(m, board);
 					board.getGame().requestUndoEnable();
 				}
