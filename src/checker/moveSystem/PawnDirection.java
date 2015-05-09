@@ -54,9 +54,9 @@ public class PawnDirection extends Direction {
 			if(tmp.getPiece() == null) ss.add(tmp);
 			if(p.getNumberOfMoves()==-1)
 			p.countMove();
-			System.out.println("First number:"+p.getNumberOfMoves());
+			
 			if(p.getNumberOfMoves()==0){
-				System.out.println("Has moved");
+				
 				tmp = board.getSquare(start.getX(), start.getY()+2);
 				if(tmp.getPiece() == null && board.getSquare(start.getX(), start.getY()+1).getPiece() == null) ss.add(tmp);
 			}

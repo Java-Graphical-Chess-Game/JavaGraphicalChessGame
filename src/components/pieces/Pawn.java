@@ -24,7 +24,7 @@ public class Pawn extends Piece {
 	}
 
 	public void setMoved(){ 
-		System.out.println("moved");
+		
 		if(this.getNumberOfMoves()==0)
 			moved=false;
 		else {moved = true;
