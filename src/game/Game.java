@@ -36,7 +36,7 @@ public class Game implements Serializable{
 	private transient Runnable r;
 
 	private Stack<Move> undo, redo;
-	
+
 	public Game(){
 		this.board = new Board(this);
 		bPlayer = new Player(Color.BLACK, board);
@@ -107,7 +107,7 @@ public class Game implements Serializable{
 		}
 
 	}
-	
+
 	public boolean isUndoEmpty(){
 		return this.undo.isEmpty();
 	}
@@ -121,15 +121,14 @@ public class Game implements Serializable{
 		redo.push(m);
 	}
 	public Move popUndo(){
-	undo.lastElement().getCurrentPiece().recountMove();
-	System.out.println("Second number:"+undo.lastElement().getCurrentPiece().getNumberOfMoves());
+		undo.lastElement().getCurrentPiece().recountMove();
 		return undo.pop();
-		
+
 	}
 	public Move popRedo(){
 		return redo.pop();
 	}
-	
+
 	public void requestUndoEnable(){
 		if(!chessFrame.getUndoState())
 			chessFrame.setUndoEnable(true);
@@ -164,7 +163,7 @@ public class Game implements Serializable{
 	public void requestVPRedraw() {
 		this.chessFrame.getVP().redraw();
 	}
-	
+
 	public void save(){
 		try {
 			SaveLoadLibrary.save(this);
@@ -174,10 +173,10 @@ public class Game implements Serializable{
 			JOptionPane.showMessageDialog(null, "Could not save game.", "Save Error", JOptionPane.OK_OPTION);
 		}
 	}
-	
-	
+
+
 	public void load(){
-		
+
 		try {
 			Game g = SaveLoadLibrary.load();
 			if(g == null) return;
@@ -199,5 +198,5 @@ public class Game implements Serializable{
 	public GraphicalBoard getGUIBoard() {
 		return guiBoard;
 	}
-	
+
 }

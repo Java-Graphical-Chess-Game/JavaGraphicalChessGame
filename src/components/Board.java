@@ -56,8 +56,6 @@ public class Board implements Serializable{
 
 	public void executeMove(Move move) {
 		if(move == null) return;
-//		move.getStart().getPiece().countMove();
-//		System.out.println("First number:"+move.getStart().getPiece().getNumberOfMoves());
 		Piece moved = move.getStart().deletePiece();
 		if(move.getEnd().getPiece() != null)
 		{
