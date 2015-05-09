@@ -6,7 +6,6 @@ import java.awt.Color;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Stack;
-
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import checker.GameStateChecker;
@@ -181,7 +180,7 @@ public class Game implements Serializable{
 			Game g = SaveLoadLibrary.load();
 			if(g == null) return;
 			this.end();
-			g.run();
+			//g.run();
 			JOptionPane.showMessageDialog(null, "Game Loaded.", "Load", JOptionPane.OK_OPTION);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -194,6 +193,7 @@ public class Game implements Serializable{
 	public void setFrame(ChessFrame cf) {
 		this.chessFrame = cf;
 	}
+	public ChessFrame getFrame(){ return chessFrame; }
 
 	public GraphicalBoard getGUIBoard() {
 		return guiBoard;

@@ -200,6 +200,10 @@ public class ChessFrame extends JFrame {
 	public VictimPanel getVP() {
 		return vp;
 	}
+	public void setVP(VictimPanel vp){
+		this.vp = vp;
+		add(vp);
+	}
 	
 
 }

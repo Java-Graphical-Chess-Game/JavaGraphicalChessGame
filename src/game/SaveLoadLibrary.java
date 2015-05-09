@@ -1,6 +1,8 @@
 package game;
 
 import gui.ChessFrame;
+import gui.GraphicalBoard;
+import gui.VictimPanel;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -53,7 +55,12 @@ public class SaveLoadLibrary {
 		Game g;
 		
 		g = (Game)ois.readObject();
-		g.setFrame(new ChessFrame(g.getGUIBoard()));
+		GraphicalBoard guiBoard = new GraphicalBoard(g.getBoard());
+		VictimPanel vp = new VictimPanel();
+		g.setFrame(new ChessFrame(guiBoard));
+		g.getFrame().setVP(vp);
+		g.updateGameState();
+		
 		ois.close();
 		
 		return g;
