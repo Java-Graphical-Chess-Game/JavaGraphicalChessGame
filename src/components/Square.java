@@ -23,13 +23,15 @@ public class Square implements Serializable{
 	private Color color;
 	private int x, y, indexX, indexY;
 	private boolean selected = false;
-	private boolean highlighted = false;
+	private boolean highlighted = false, debug = false;
 	protected Piece piece;
 	
 	public void setSelected(){
 		color = new Color(248, 242, 114);
 		selected = true;
 	}
+	
+	public void setDebug(){ debug = true; }
 	
 	public void setHighlighted(){
 		//color = new Color(100, 137, 97);
@@ -61,6 +63,7 @@ public class Square implements Serializable{
 		else color = new Color(204, 84, 0);
 		selected = false;
 		highlighted = false;
+		debug = false;
 	}
 	
 	public Color getColor(){ return color; }
@@ -103,6 +106,11 @@ public class Square implements Serializable{
 		if(isHighlighted()){
 			g2.setColor(new Color(100, 137, 97));
 			g2.fillOval(x + SQUARE_SIZE/2 - 10, y+SQUARE_SIZE/2 - 10, 20, 20);
+		}
+		
+		if(debug){
+			g2.setColor(new Color(255, 0, 0));
+			g2.fillOval(x + SQUARE_SIZE/2 - 10, y+SQUARE_SIZE/2 - 10, 10, 30);
 		}
 	}
 

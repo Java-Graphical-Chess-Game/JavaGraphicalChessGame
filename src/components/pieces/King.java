@@ -51,9 +51,11 @@ public class King extends Piece {
 		
 		for(Direction d : directions)
 			for(Displacement dis : displacements){
+				if(dis instanceof MultipleStepDisplacement && d instanceof PawnDirection)
+					continue;
 				gm = new GeneralMove(d, dis);
-				temp = askForSquares(board, gm, temp, false, false); // Attackers are too lazy to attack the king
-												 			  // So the king will attack them instead
+				temp = askForSquares(board, gm, temp, false, false); 	// Attackers are too lazy to attack the king
+												 			  			// So the king will attack them instead
 				for(Square tmp : temp){
 					if(tmp.getPiece() != null
 							&& tmp.getPiece().getColor()!=this.getColor()
@@ -61,6 +63,33 @@ public class King extends Piece {
 						threatSquares.add(tmp);
 				}
 			}
+		if(getColor() == "White"){ // DON'T JUDGE ME, it's become too hard to maintain!
+			Square tmp;
+			if((tmp = board.getSquare(square.getX()-1, square.getY()+1)).getPiece()!=null){
+				tmp.setDebug();
+				if(tmp.getPiece() instanceof Pawn && tmp.getPiece().getColor()!=getColor())
+					threatSquares.add(tmp);
+			}
+			if((tmp = board.getSquare(square.getX()+1, square.getY()+1)).getPiece()!=null){
+				tmp.setDebug();
+				if(tmp.getPiece() instanceof Pawn && tmp.getPiece().getColor()!=getColor())
+					threatSquares.add(tmp);
+			}
+		}
+		else{
+			Square tmp;
+			if((tmp = board.getSquare(square.getX()-1, square.getY()-1)).getPiece()!=null){
+				tmp.setDebug();
+				if(tmp.getPiece() instanceof Pawn && tmp.getPiece().getColor()!=getColor())
+					threatSquares.add(tmp);
+			}
+			if((tmp = board.getSquare(square.getX()+1, square.getY()-1)).getPiece()!=null){
+				tmp.setDebug();
+				if(tmp.getPiece() instanceof Pawn && tmp.getPiece().getColor()!=getColor())
+					threatSquares.add(tmp);
+			}
+		}
+		
 		if(threatSquares.isEmpty()) return gs;
 
 		if(getColor() == "Black")

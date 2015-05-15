@@ -83,7 +83,9 @@ public class PawnDirection extends Direction {
 		else if(p.getColor() == "Black"){
 			tmp = board.getSquare(start.getX(), start.getY()-1);
 			if(tmp.getPiece() == null) ss.add(tmp);
-			if(!p.hasMoved() && !p.doubleStepped()){
+			if(p.getNumberOfMoves()==-1)
+				p.countMove();
+			if(p.getNumberOfMoves()==0){
 				tmp = board.getSquare(start.getX(), start.getY()-2);
 				if(tmp.getPiece() == null && board.getSquare(start.getX(), start.getY()-1).getPiece() == null) ss.add(tmp);
 			}
@@ -115,12 +117,13 @@ public class PawnDirection extends Direction {
 	private ArrayList<Square> checkForAttackPossibility(String color, Square start, Board board){
 		ArrayList<Square> ss = new ArrayList<Square>();
 		// Attacking
-		int i = (color == "Black")? -1: 1; 
+		int i = (color == "Black")? -1: 1;
 		Square tmp = board.getSquare(start.getX()+1, start.getY()+i);
 		if(tmp.getPiece() != null && tmp.getPiece().getColor() != color) ss.add(tmp);
 
 		tmp = board.getSquare(start.getX()-1, start.getY()+i);
 		if(tmp.getPiece() != null && tmp.getPiece().getColor() != color) ss.add(tmp);
+		
 		return ss;
 	}
 
